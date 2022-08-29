@@ -10,6 +10,7 @@ import { useState } from "react";
 import { SearchBox } from "./Shared/SearchBox";
 import { SearchResult } from "./../utils/types/searchtype";
 import ViewerContext from "../utils/context/ViewerContext";
+import { Loading } from "./Shared/Loading";
 
 interface Local {
   loading: boolean;
@@ -117,16 +118,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, local }) => {
   };
 
   if (query.isLoading || local.loading) {
-    return (
-      <div className="w-full min-h-screen flex-center">
-        <div className="w-[100px] h-[20ppx]  animate-spin">
-          <div
-            className="h-[100px] w-[100px] border-4 
-   border-t-purple-400 border-b-purple-700 rounded-[50%]"
-          ></div>
-        </div>
-      </div>
-    );
+    return ( <Loading size={100}/>);
   }
 
   if (shouldLogin()) {
