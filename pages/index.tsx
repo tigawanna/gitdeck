@@ -1,11 +1,30 @@
-import type { NextPage } from 'next'
+import type { NextPage } from "next";
+import { useContext } from "react";
+import { ProfileInfo } from "../components/people/ProfileInfo";
+import ViewerContext from "./../utils/context/ViewerContext";
+import { Repository } from "../components/repo/Repository";
 
-const Home: NextPage = () => {
+const Home: NextPage = (props: any) => {
+  const viewerCtx = useContext(ViewerContext);
+
+  // console.log("global ctx   ===  ",viewerCtx)
+
   return (
-   <div className='in-h-screen w-full bg-red-600'>
-    index
+    <div className="min-h-screen h-full flex flex-col justify-between">
+      <div className="h-[20%]">
+        <ProfileInfo
+          token={viewerCtx?.value?.token as string}
+          user={viewerCtx?.value?.viewer}
+        />
+      </div>
+      <div className="h-[80%]">
+        <Repository
+          token={viewerCtx?.value?.token as string}
+          username={viewerCtx?.value?.viewer?.login as string}
+        />
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
