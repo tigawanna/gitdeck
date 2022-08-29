@@ -7,7 +7,7 @@ import { Toolbar } from "./Toolbar/Toolbar";
 import { Viewer } from "./../utils/types/usertypes";
 import GlobalContext from "../utils/context/GlobalsContext";
 import { useState } from "react";
-// import { SearchBox } from "./Shared/SearchBox";
+import { SearchBox } from "./Shared/SearchBox";
 import { SearchResult } from "./../utils/types/searchtype";
 import ViewerContext from "../utils/context/ViewerContext";
 
@@ -144,7 +144,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, local }) => {
       >
         <div className="fixed top-0 w-full z-30 h-[10%]">
           <Toolbar user={viewer} />
-          {/* <div className="w-full dark-styles ">
+          <div className="w-full dark-styles ">
             <SearchBox
               keyword={keyword}
               setKeyword={setKeyword}
@@ -153,7 +153,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, local }) => {
               results={search_results?.edges}
               search_query={search_query}
             />
-          </div> */}
+          </div>
         </div>
         <div className=" h-[90%]  mt-24">{children}</div>
       </ViewerContext.Provider>
