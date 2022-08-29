@@ -10,6 +10,8 @@ import Image from "next/image";
 import ALT from '../../public/alt.png'
 import { useContext } from 'react';
 import GlobalContext from '../../utils/context/GlobalsContext';
+import { useRouter } from 'next/router'
+import { IconContext } from "react-icons";
 
 interface ToolbarProps {
   user: Viewer | undefined;
@@ -19,7 +21,7 @@ interface ToolbarProps {
 export const Toolbar: React.FC<ToolbarProps> = ({user}) => {
 const [open, setOpen] = useState(false)
 const [keyword, setKeyword] = useState({word:''})
-
+const router = useRouter()
 const globalCtx = useContext(GlobalContext);
 const colorTheme = globalCtx?.value?.theme
 
@@ -30,10 +32,15 @@ const logout=()=>{
 const action=()=>{console.log("test query === ",keyword)}
 
 const nextTheme =  colorTheme === 'dark'?'light':'dark'
-const mode = colorTheme === "light" ? BsSunFill : BsFillMoonFill;
+const mode = colorTheme === "dark" ? BsSunFill : BsFillMoonFill;
 
 const toggle = () =>{
 globalCtx.updateValue({ type: "THEME", payload: nextTheme });
+}
+
+const logger =()=>{
+  console.log("going home")
+    router.push('/')
 }
 //console.log('user results === ',results)
 return (
@@ -44,16 +51,15 @@ return (
 
     <div className="flex items-center justify-between w-full text-lg font-bold ">
       <div className="w-fit p-1  flex-center bg-white">
-        <Link href="/">
-          <TheIcon Icon={GrHome} size={"25"} color={""} />
-        </Link>
+
+        <Link href="/"><GrHome/></Link>
+
+    <Link href="/test">Test</Link>
       </div>
 
       <div className="w-fit p-1  flex-center">
         <TheIcon Icon={mode} size={"25"} color={""} iconAction={toggle} />
       </div>
-
- 
 
       <div
         onClick={() => setOpen(true)}
@@ -61,7 +67,7 @@ return (
       >
         <Image
           className="h-[80%] w-fit rounded-[50%] m-1 border border-white"
-          src={user?.avatarUrl as string || ALT}
+          src={(user?.avatarUrl as string) || ALT}
           alt=""
           height={"20px"}
           width={"20px"}

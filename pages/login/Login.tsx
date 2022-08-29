@@ -7,7 +7,7 @@ import GlobalContext from "../../utils/context/GlobalsContext";
 
 interface LoginProps {}
 
-export const Login: React.FC<LoginProps> = () => {
+ const Login: React.FC<LoginProps> = () => {
   const [input, setInput] = useState({ token: "" });
   const [error, setError] = useState({ name: "", message: "" });
   const router = useRouter();
@@ -85,3 +85,5 @@ export const Login: React.FC<LoginProps> = () => {
     </div>
   );
 };
+
+export default Login

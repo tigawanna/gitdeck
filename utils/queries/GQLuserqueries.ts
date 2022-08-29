@@ -61,3 +61,69 @@ query userSearch($query:String!,$first:Int,$type:SearchType!){
 }
 
 `
+
+
+export const posibbleFollower = gql`
+  query getUserFollowers($login: String!, $first: Int, $after: String) {
+    user(login: $login) {
+      name
+      login
+      followers(first: $first, after: $after) {
+        pageInfo {
+          endCursor
+          hasNextPage
+          hasPreviousPage
+          startCursor
+        }
+        totalCount
+        edges {
+          node {
+            avatarUrl
+            bio
+            createdAt
+            email
+            viewerIsFollowing
+            url
+            id
+            name
+            isFollowingViewer
+            location
+          }
+        }
+      }
+    }
+  }
+`;
+
+
+export const getUserFollowing = gql`
+  query getUserFollowing($login: String!, $first: Int, $after: String) {
+    user(login: $login) {
+      name
+      login
+      following(first: $first, after: $after) {
+        pageInfo {
+          endCursor
+          hasNextPage
+          hasPreviousPage
+          startCursor
+        }
+        totalCount
+        edges {
+          node {
+            avatarUrl
+            bio
+            createdAt
+            email
+            viewerIsFollowing
+            url
+            id
+            name
+            isFollowingViewer
+            location
+          }
+        }
+      }
+    }
+  }
+`;

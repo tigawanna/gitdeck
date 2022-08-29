@@ -8,6 +8,8 @@ import Image from "next/image";
 import { Viewer } from './../../utils/types/usertypes';
 import GlobalContext from "../../utils/context/GlobalsContext";
 import relativeTime from 'dayjs/plugin/relativeTime'
+import { useRouter } from "next/router";
+import Link from 'next/link'
 
 import { TheIcon } from './../Shared/TheIcon';
 dayjs.extend(relativeTime)
@@ -85,6 +87,7 @@ export const ProfileInfo: React.FC<ProfileInfoProps> = ({ user, token}) => {
         </div>
 
         <div className="w-[70%] flex justify-between">
+          <Link href={'/profile/'+ user?.login}>
           <div
             onClick={() => {
               setActive("followers");
@@ -99,6 +102,8 @@ export const ProfileInfo: React.FC<ProfileInfoProps> = ({ user, token}) => {
           >
             folllowers: {user?.followers?.totalCount}
           </div>
+          </Link>
+
           {!admin ? (
             <div>
               {yes ? (
@@ -120,10 +125,10 @@ export const ProfileInfo: React.FC<ProfileInfoProps> = ({ user, token}) => {
               )}
             </div>
           ) : null}
+          
+          <Link href={'/profile/'+ user?.login}>
           <div
-            onClick={() => {
-              setActive("following");
-            }}
+            onClick={() => {setActive("following") }}
             className="text-[12px] md:text-lg w-fit h-fit rounded-sm 
           hover:bg-slate-500 hover:text-white cursor-pointer p-[2px] dark:hover:bg-slate-900"
             style={{
@@ -134,6 +139,8 @@ export const ProfileInfo: React.FC<ProfileInfoProps> = ({ user, token}) => {
           >
             folllowing: {user?.following?.totalCount}
           </div>
+          </Link>
+
         </div>
       </div>
     </div>
