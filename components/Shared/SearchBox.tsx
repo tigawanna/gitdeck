@@ -41,7 +41,8 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
       <form onSubmit={handleSubmit} className="w-full flex items-center  justify-center md:justify-end">
         <div className="flex-center w-[80%] md:w-[50%] border-black border rounded-md ">
           <input
-            className="w-[100%]  p-[5px] md:p-1 mx-1 dark:bg-slate-700  mr-2 transition duration-500"
+            className="w-[100%]  p-[5px] md:p-1 mx-1 dark:bg-slate-700  
+            mr-2 transition duration-500"
             id="word"
             placeholder={title}
             onChange={handleChange}

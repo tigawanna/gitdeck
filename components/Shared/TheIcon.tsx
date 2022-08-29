@@ -6,14 +6,16 @@ type MyProps = {
   Icon: IconType;
   size: string;
   color: string;
+  iconstyle?:string;
   iconAction?: () => any;
 };
 type MyState = {
-  count: number; // like this
+  iconstyle: string;
 };
 export class TheIcon extends React.Component<MyProps, MyState> {
    constructor(props:MyProps) {
     super(props)
+    this.state = { iconstyle:this.props?.iconstyle?this.props?.iconstyle:"" };
     this.clickAction = this.clickAction.bind(this); 
     }
     clickAction(){
@@ -27,7 +29,8 @@ export class TheIcon extends React.Component<MyProps, MyState> {
     return (
 
       <div>
-        <IconContext.Provider value={{ size:this.props.size,color:this.props.color}}>
+        <IconContext.Provider value={{ size:this.props.size,color:this.props.color,
+          className:this.state.iconstyle}}>
             <this.props.Icon onClick={()=>this.clickAction()}/>
         </IconContext.Provider>
     
