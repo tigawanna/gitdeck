@@ -1,9 +1,9 @@
 import gql from "graphql-tag";
 
-//get currently logged in user
-export const GETVIEWER = gql`
-  query getViewer {
-    viewer {
+/// user fragments
+export const OneUserFrag = gql`
+    fragment OneUser on User{
+      name
       login
       email
       bio
@@ -16,6 +16,16 @@ export const GETVIEWER = gql`
       isViewer
       location
       url
+    }
+`
+
+
+
+//get currently logged in user
+export const GETVIEWER = gql`
+  query getViewer {
+    viewer {
+      ...OneUser
       followers(first: 1) {
         totalCount
         nodes {
@@ -30,6 +40,7 @@ export const GETVIEWER = gql`
       }
     }
   }
+  ${OneUserFrag}
 `;
 
 
@@ -63,12 +74,10 @@ query userSearch($query:String!,$first:Int,$type:SearchType!){
 `
 
 
-export const posibbleFollower = gql`
+export const getUserWithFollowers = gql`
   query getUserFollowers($login: String!, $first: Int, $after: String) {
     user(login: $login) {
-      name
-      login
-      followers(first: $first, after: $after) {
+     followers(first: $first, after: $after) {
         pageInfo {
           endCursor
           hasNextPage
@@ -78,30 +87,34 @@ export const posibbleFollower = gql`
         totalCount
         edges {
           node {
-            avatarUrl
-            bio
-            createdAt
-            email
-            viewerIsFollowing
-            url
-            id
-            name
-            isFollowingViewer
-            location
+      ...OneUser
           }
         }
       }
     }
   }
+   ${OneUserFrag}
 `;
 
 
-export const getUserFollowing = gql`
+
+
+export const GETONEUSER = gql`
+  query getUser($login: String!) {
+    user(login: $login) {
+      ...OneUser
+      }
+   }
+   ${OneUserFrag}
+    `
+
+
+
+
+export const getUserWithFollowing = gql`
   query getUserFollowing($login: String!, $first: Int, $after: String) {
     user(login: $login) {
-      name
-      login
-      following(first: $first, after: $after) {
+    following(first: $first, after: $after) {
         pageInfo {
           endCursor
           hasNextPage
@@ -111,19 +124,11 @@ export const getUserFollowing = gql`
         totalCount
         edges {
           node {
-            avatarUrl
-            bio
-            createdAt
-            email
-            viewerIsFollowing
-            url
-            id
-            name
-            isFollowingViewer
-            location
+       ...OneUser
           }
         }
       }
     }
   }
+  ${OneUserFrag}
 `;

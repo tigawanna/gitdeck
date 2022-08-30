@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { Login } from "../pages/login/Login";
+import  Login  from "../pages/login/Login";
 import { useContext } from "react";
 import { useGQLQuery } from "../utils/queryhooks/gqlquery";
 import { GETVIEWER, USERSEARCH } from "./../utils/queries/GQLuserqueries";
