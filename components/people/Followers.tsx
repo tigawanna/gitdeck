@@ -45,7 +45,7 @@ if (query.isLoading) {
 
   return (
     <div className="h-full w-full flex-col-center ">
-      <div className="h-fit w-full flex  flex-wrap">
+      <div className="h-fit w-full flex-center  flex-wrap">
         {pages?.map((page) => {
           return page?.user?.followers?.edges?.map((item,index) => {
             return (

@@ -74,7 +74,7 @@ export const FOLLO = gql`
 
 
 
-export const FOLLOWING = gql`
+export const FOL = gql`
          query getFollowing($name: String!, $limit: Int, $after: String) {
            user(login: $name) {
              following(first: $limit, after: $after) {
@@ -127,6 +127,29 @@ export const FOLLOWERS= gql`
   query getUserFollowers($login: String!, $first: Int, $after: String) {
     user(login: $login) {
      followers(first: $first, after: $after) {
+        pageInfo {
+          endCursor
+          hasNextPage
+          hasPreviousPage
+          startCursor
+        }
+        totalCount
+        edges {
+          node {
+      ...OneUser
+          }
+        }
+      }
+    }
+  }
+   ${OneUserFrag}
+`;
+
+
+export const FOLLOWING= gql`
+  query getUserFollowers($login: String!, $first: Int, $after: String) {
+    user(login: $login) {
+     following(first: $first, after: $after) {
         pageInfo {
           endCursor
           hasNextPage

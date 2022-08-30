@@ -9,7 +9,8 @@ import { TheIcon } from './../../components/Shared/TheIcon';
 import { FaSearch } from "react-icons/fa";
 import { Viewer} from './../../utils/types/usertypes';
 import { Loading } from './../../components/Shared/Loading';
-import { Followers } from '../../components/people/Followers';
+import { Followers  } from '../../components/people/Followers';
+import { Following  } from '../../components/people/Following';
 
 interface ProfileProps {
 
@@ -73,7 +74,7 @@ return (
       </div>
 
       <div className="min-h-[80%] flex flex-col ">
-        <TheIcon Icon={FaSearch} size={"25"} color={""} />
+       
         {/* <Repository
           token={viewerCtx?.value?.token as string}
           username={response?.login as string}
@@ -82,6 +83,11 @@ return (
           token={viewerCtx?.value?.token as string}
           user={response}
         />
+          <Following
+          token={viewerCtx?.value?.token as string}
+          user={response}
+        />
+
       </div>
     </div>
   );

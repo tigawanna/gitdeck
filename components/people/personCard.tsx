@@ -48,17 +48,19 @@ console.log("dev.login",dev.login)
           </div>
           <div
             className="text-[12px]  max-h-[50px] font-normal 
-              md:text-[12px] break-all w-[100%] text-ellipsis overflow-hidden">
+              md:text-[10px] break-word w-[95%] text-ellipsis overflow-hidden">
             {dev?.bio}
           </div>
         </div>
       </div>
-
-      {yes ? (
+     <div className="w-full  flex-center">
+      {!dev?.isViewer?
+       <div className="w-full  flex-center">
+       {yes ? (
         <button
           onClick={() => unfollowThem(dev.login, token)}
-          className="bg-slate-600 hover:bg-slate-800 text-white
-           hover:text-red-200 text-[10px] rounded-md p-[4px] m-[3px] h-fit"
+          className="bg-slate-600 hover:bg-slate-800 text-white w-[90%]
+           hover:text-red-200 text-[13px] rounded-md p-[4px] m-[3px] h-fit"
         >
           {"Unfollow"}
         </button>
@@ -66,11 +68,15 @@ console.log("dev.login",dev.login)
         <button
           onClick={() => followThem(dev.login, token)}
           className="bg-slate-600 hover:bg-slate-800 text-white
-           hover:text-red-200 text-[10px] rounded-md p-[4px] m-[3px] h-fit "
+           hover:text-red-200 text-[13px] rounded-md p-[4px] m-[3px] h-fit w-[90%]"
         >
-          {"Follow"}
+          {dev?.isFollowingViewer?"Follow back":"Follow"}
         </button>
       )}
+       </div>
+      :null
+      }
+      </div>
       </div>
       </Link>
     </div>

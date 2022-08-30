@@ -1,29 +1,25 @@
 import React from "react";
-import { MainAuthedUser } from "../../types/UserTypes";
-import { useInfiniteGQLQuery } from "../../utils/graphql/gqlInfiniteQuery";
 import { PersonCard } from "./personCard";
 import { FOLLOWING } from "./utils/queries";
-import { FOLLOWINGPAGE,ROOTFOLLOWING } from "./utils/types";
+import { FOLLOWINGPAGE, ROOTFOLLOWING } from "./utils/types";
+import { useInfiniteGQLQuery } from "./../../utils/queryhooks/gqlinfinitequery";
+import { OneUser } from "../../utils/types/usertypes";
 
 interface FollowingProps {
-  url?: string;
   token: string;
-  user: MainAuthedUser | undefined;
-  ogUser: MainAuthedUser | undefined;
+  user: OneUser | undefined;
 }
 
-export const Following: React.FC<FollowingProps> = ({
-  token,
-  user,
-}) => {
-
-
-const query = useInfiniteGQLQuery(
-  //key token, query
-    ["following", user?.login as string],token,FOLLOWING,
-    //variables
-    { name: user?.login,limit:25,after: null},
-    //react-query config
+export const Following: React.FC<FollowingProps> = ({ token, user }) => {
+  const query = useInfiniteGQLQuery(
+    ["following", user?.login as string],
+    token,
+    FOLLOWING,
+    {
+      login: user?.login,
+      first: 2,
+      after: null,
+    },
     {
       getPreviousPageParam: (firstPage: FOLLOWINGPAGE) => {
         return firstPage?.user?.following?.pageInfo?.startCursor ?? null;
@@ -36,27 +32,25 @@ const query = useInfiniteGQLQuery(
 
   const data = query.data as ROOTFOLLOWING;
 
-
   if (query.isLoading) {
     return <div className="h-full w-full  flex-center ">Loading....</div>;
   }
-  
+
   const pages = data?.pages;
-  //  console.log("followers === ",followers)
-  const extras = pages[pages?.length - 1].user?.following;
+  console.log("followers === ", data);
+  const extras = pages[pages.length - 1].user?.following;
   const hasMore = extras?.pageInfo?.hasNextPage;
 
   return (
-    <div className="h-full w-full flex-col-center">
+    <div className="h-full w-full flex-col-center ">
       <div className="h-fit w-full flex-center  flex-wrap">
         {pages?.map((page) => {
-          return page?.user?.following?.edges?.map((item) => {
+          return page?.user?.following?.edges?.map((item, index) => {
             return (
               <PersonCard
-                key={item.node.id}
+                key={item.node.id + index}
                 dev={item?.node}
                 token={token}
-                user={user}
               />
             );
           });
