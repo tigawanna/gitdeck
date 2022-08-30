@@ -1,5 +1,37 @@
 import gql from "graphql-tag";
 
+/// user fragments
+export const OneUserFrag = gql`
+  fragment OneUser on User {
+    id
+    name
+    login
+    email
+    bio
+    avatarUrl
+    company
+    twitterUsername
+    createdAt
+    isFollowingViewer
+    viewerIsFollowing
+    isViewer
+    location
+    url
+    followers(first: 1) {
+      totalCount
+      nodes {
+        id
+      }
+    }
+    following(first: 1) {
+      totalCount
+      nodes {
+        id
+      }
+    }
+  }
+`;
+
 export const MINI_USER = gql`
          query getMiniUser($name: String!) {
            user(login: $name) {
@@ -16,7 +48,7 @@ export const MINI_USER = gql`
        `;
 
 
-export const FOLLOWERS = gql`
+export const FOLLO = gql`
   query getFollowers($name: String!, $limit:Int,$after: String) {
     user(login: $name) {
       followers(first: $limit, after: $after) {
@@ -38,6 +70,7 @@ export const FOLLOWERS = gql`
     }
   }
 `;
+
 
 
 
@@ -87,4 +120,27 @@ const SIMPLE_USER_QUERY = gql`
       }
     }
   }
+`;
+
+
+export const FOLLOWERS= gql`
+  query getUserFollowers($login: String!, $first: Int, $after: String) {
+    user(login: $login) {
+     followers(first: $first, after: $after) {
+        pageInfo {
+          endCursor
+          hasNextPage
+          hasPreviousPage
+          startCursor
+        }
+        totalCount
+        edges {
+          node {
+      ...OneUser
+          }
+        }
+      }
+    }
+  }
+   ${OneUserFrag}
 `;

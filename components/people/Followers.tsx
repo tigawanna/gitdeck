@@ -1,16 +1,14 @@
 import React from "react";
-import {MainAuthedUser } from "../../types/UserTypes";
-import { useInfiniteGQLQuery } from "../../utils/graphql/gqlInfiniteQuery";
 import { PersonCard } from "./personCard";
 import { FOLLOWERS } from "./utils/queries";
 import { FOLLOWERSPAGE, ROOTFOLLOWERS } from "./utils/types";
+import { useInfiniteGQLQuery } from './../../utils/queryhooks/gqlinfinitequery';
+import { OneUser } from "../../utils/types/usertypes";
 
 
 interface FollowersProps {
-  url?: string;
   token: string;
-  user:MainAuthedUser|undefined
-  ogUser:MainAuthedUser|undefined
+  user:OneUser|undefined
 }
 
 export const Followers: React.FC<FollowersProps> = ({token,user}) => {
@@ -20,8 +18,8 @@ export const Followers: React.FC<FollowersProps> = ({token,user}) => {
   token,
   FOLLOWERS,
   {
-    name: user?.login,
-    limit: 25,
+    login: user?.login,
+    first: 2,
     after: null,
   },
   {
@@ -41,22 +39,21 @@ if (query.isLoading) {
   }
 
     const pages = data?.pages;
-    //  console.log("followers === ",followers)
+     console.log("followers === ",data)
     const extras = pages[pages.length - 1].user?.followers;
     const hasMore = extras?.pageInfo?.hasNextPage;
 
   return (
     <div className="h-full w-full flex-col-center ">
-      <div className="h-fit w-full flex-center  flex-wrap">
+      <div className="h-fit w-full flex  flex-wrap">
         {pages?.map((page) => {
-          return page?.user?.followers?.edges?.map((item) => {
+          return page?.user?.followers?.edges?.map((item,index) => {
             return (
               <PersonCard
-                key={item.node.id}
+                key={item.node.id + index}
                 dev={item?.node}
                 token={token}
-                user={user}
-              />
+               />
             );
           });
         })}

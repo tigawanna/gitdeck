@@ -1,16 +1,15 @@
 import React from 'react'
 import { useRouter } from "next/router";
-import { useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { useGQLQuery } from './../../utils/queryhooks/gqlquery';
 import { GETONEUSER } from '../../utils/queries/GQLuserqueries';
-import GlobalContext from '../../utils/context/GlobalsContext';
 import ViewerContext from './../../utils/context/ViewerContext';
 import { ProfileInfo } from './../../components/people/ProfileInfo';
 import { TheIcon } from './../../components/Shared/TheIcon';
-import { FaSearch , FaTimes} from "react-icons/fa";
-import { Repository } from './../../components/repo/Repository';
-import { Viewer } from './../../utils/types/usertypes';
+import { FaSearch } from "react-icons/fa";
+import { Viewer} from './../../utils/types/usertypes';
 import { Loading } from './../../components/Shared/Loading';
+import { Followers } from '../../components/people/Followers';
 
 interface ProfileProps {
 
@@ -30,7 +29,7 @@ const { name } = router.query
 
 console.log("user name === ",name)
   const query = useGQLQuery(
-    ["one-user"],
+    ["one-user",name as string],
    viewerCtx?.value?.token as string,
     GETONEUSER,
     {
@@ -65,7 +64,7 @@ const response = query.data?.user as Viewer
 
 
 return (
-    <div className="min-h-screen h-full flex flex-col justify-between">
+    <div className="min-h-screen h-full flex flex-col justify-start">
       <div className="h-[20%]">
         <ProfileInfo
           token={viewerCtx?.value?.token as string}
@@ -73,11 +72,15 @@ return (
         />
       </div>
 
-      <div className="h-[80%]">
+      <div className="min-h-[80%] flex flex-col ">
         <TheIcon Icon={FaSearch} size={"25"} color={""} />
-        <Repository
+        {/* <Repository
           token={viewerCtx?.value?.token as string}
           username={response?.login as string}
+        /> */}
+        <Followers
+          token={viewerCtx?.value?.token as string}
+          user={response}
         />
       </div>
     </div>

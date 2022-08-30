@@ -33,14 +33,10 @@ export interface Follow {
   pageInfo: PageInfo;
 }
 export interface Edge {
-  node: Node;
+  node: OneUser;
 }
 
-export interface Node {
-  login: string;
-  avatarUrl: string;
-  id: string;
-}
+
 
 export interface PageInfo {
   startCursor: string;
@@ -67,7 +63,39 @@ export interface MINIUSER {
 }
 
 
+export interface OneUser {
+  id: string;
+  name: string;
+  login: string;
+  email: string;
+  bio: string;
+  avatarUrl: string;
+  company: any;
+  twitterUsername: any;
+  createdAt: string;
+  isFollowingViewer: boolean;
+  viewerIsFollowing: boolean;
+  isViewer: boolean;
+  location: string;
+  url: string;
+  followers: Followers;
+  following: Following;
+}
 
+
+export interface Followers {
+  totalCount: number;
+  nodes: FollowNode[];
+}
+
+export interface Following {
+  totalCount: number;
+  nodes: FollowNode[];
+}
+
+export interface FollowNode {
+  id: string;
+}
 
 
 

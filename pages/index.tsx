@@ -20,8 +20,7 @@ const Home: NextPage = (props: any) => {
       </div>
 
       <div className="h-[80%]" >
-            <TheIcon Icon={FaSearch} size={"25"} color={""} 
-            />
+   
         <Repository
           token={viewerCtx?.value?.token as string}
           username={viewerCtx?.value?.viewer?.login as string}

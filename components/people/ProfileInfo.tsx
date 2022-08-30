@@ -8,7 +8,6 @@ import Image from "next/image";
 import { Viewer } from './../../utils/types/usertypes';
 import GlobalContext from "../../utils/context/GlobalsContext";
 import relativeTime from 'dayjs/plugin/relativeTime'
-import { useRouter } from "next/router";
 import Link from 'next/link'
 
 import { TheIcon } from './../Shared/TheIcon';
