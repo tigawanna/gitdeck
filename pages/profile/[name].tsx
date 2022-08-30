@@ -1,12 +1,11 @@
 import React from 'react'
 import { useRouter } from "next/router";
-import { useContext } from 'react';
+import {  useState,useContext } from 'react';
 import { useGQLQuery } from './../../utils/queryhooks/gqlquery';
 import { GETONEUSER } from '../../utils/queries/GQLuserqueries';
 import ViewerContext from './../../utils/context/ViewerContext';
 import { ProfileInfo } from './../../components/people/ProfileInfo';
-import { TheIcon } from './../../components/Shared/TheIcon';
-import { FaSearch } from "react-icons/fa";
+
 import { Viewer} from './../../utils/types/usertypes';
 import { Loading } from './../../components/Shared/Loading';
 import { Followers  } from '../../components/people/Followers';
@@ -25,10 +24,9 @@ interface RqResponse {
 const Profile: React.FC<ProfileProps> = ({}) => {
 const router = useRouter();
 const viewerCtx = useContext(ViewerContext);
-
 const { name } = router.query
-
-console.log("user name === ",name)
+const [currTab,setCurrTab] = useState<string>("")
+const tabs =['repo','followers','following']
   const query = useGQLQuery(
     ["one-user",name as string],
    viewerCtx?.value?.token as string,
@@ -72,7 +70,12 @@ return (
           user={response}
         />
       </div>
-
+      <div className="w-full flex items-center justify-evenly flex-wrap">
+      { tabs.map((item)=>{
+          return ( <TabItem value={item} setValue={setCurrTab}/>)
+      })}
+     
+    </div>
       <div className="min-h-[80%] flex flex-col ">
        
         {/* <Repository
@@ -94,3 +97,22 @@ return (
 }
 
 export default Profile
+
+
+interface TabItemProps {
+  value: string;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const TabItem: React.FC<TabItemProps> = ({value,setValue}) => {
+return (
+ <div className ='px-2 outline-2 outline-slate-500 dark:outline-slate-200 
+ hover:outline-purple-500 hover:outline-4 rounded-4 cursor-pointer
+ 
+ '>
+  {value}
+ </div>
+);
+}
+ 
+

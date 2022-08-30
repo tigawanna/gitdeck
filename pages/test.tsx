@@ -1,19 +1,20 @@
-import React from 'react'
+import React , {useContext} from 'react'
 import Link from "next/link";
 import { TheIcon } from '../components/Shared/TheIcon';
 import { GrHome } from "react-icons/gr";
 import { useGQLQuery } from './../utils/queryhooks/gqlquery';
 import { GETONEUSER } from '../utils/queries/GQLuserqueries';
+import ViewerContext from './../utils/context/ViewerContext';
 
 interface testProps {
 
 }
 
 const Test: React.FC<testProps> = ({}) => {
-
+const viewerCtx = useContext(ViewerContext);
   const query = useGQLQuery(
     ["one-user"],
-   "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",
+  viewerCtx?.value?.token as string,
     GETONEUSER,
     {
      login:"tigawanna"
