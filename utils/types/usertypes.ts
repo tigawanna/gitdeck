@@ -1,4 +1,5 @@
 export interface Viewer {
+  name:string;
   login: string;
   email: string;
   bio: string;
@@ -14,6 +15,26 @@ export interface Viewer {
   followers: Followers;
   following: Following;
 }
+
+
+export interface OneUser {
+  name: string;
+  login: string;
+  email: string;
+  bio: string;
+  avatarUrl: string;
+  company: any;
+  twitterUsername: any;
+  createdAt: string;
+  isFollowingViewer: boolean;
+  viewerIsFollowing: boolean;
+  isViewer: boolean;
+  location: string;
+  url: string;
+  followers: Followers;
+  following: Following;
+}
+
 
 export interface Followers {
   totalCount: number;

@@ -20,12 +20,13 @@ interface ProfileInfoProps {
 }
 
 export const ProfileInfo: React.FC<ProfileInfoProps> = ({ user, token}) => {
+  console.log("profile info props ===   ==== ",user,token)
+
   const globalCtx = useContext(GlobalContext)
-  const ogUser = globalCtx?.value?.mainuser
-  const extradetails = {company:user?.company,email:user?.email,
+   const extradetails = {company:user?.company,email:user?.email,
     location:user?.location,twitter:user?.twitterUsername}
 
-  const [yes, setYes] = useState<any>(user?.isFollowingViewer);
+  const [yes, setYes] = useState<any>(user?.viewerIsFollowing);
   const [active, setActive] = useState<string>("");
   const username = user?.login as string;
   const admin = user?.isViewer
@@ -68,7 +69,7 @@ export const ProfileInfo: React.FC<ProfileInfoProps> = ({ user, token}) => {
           >
             <div className="text-[15px] w-full ">
               <div className=" text-[15px] md:text-xl font-bold  ">
-                {user?.login}
+                {user?.name}
               </div>
               <div className="text-[15px] md:text-lg ">@{user?.login}</div>
               <div className="text-[15px] max-w-[80%]">{user?.bio}</div>
@@ -120,7 +121,7 @@ export const ProfileInfo: React.FC<ProfileInfoProps> = ({ user, token}) => {
                   className="bg-slate-600 hover:bg-slate-800 text-white hover:text-red-200 
                   text-[12px] rounded-md p-[4px] m-[3px] h-fit "
                 >
-                  {"Follow"}
+                  {user?.isFollowingViewer? "Follow back":"Follow"}
                 </button>
               )}
             </div>

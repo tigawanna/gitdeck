@@ -2,22 +2,34 @@ import gql from "graphql-tag";
 
 /// user fragments
 export const OneUserFrag = gql`
-    fragment OneUser on User{
-      name
-      login
-      email
-      bio
-      avatarUrl
-      company
-      twitterUsername
-      createdAt
-      isFollowingViewer
-      viewerIsFollowing
-      isViewer
-      location
-      url
+  fragment OneUser on User {
+    name
+    login
+    email
+    bio
+    avatarUrl
+    company
+    twitterUsername
+    createdAt
+    isFollowingViewer
+    viewerIsFollowing
+    isViewer
+    location
+    url
+    followers(first: 1) {
+      totalCount
+      nodes {
+        id
+      }
     }
-`
+    following(first: 1) {
+      totalCount
+      nodes {
+        id
+      }
+    }
+  }
+`;
 
 
 

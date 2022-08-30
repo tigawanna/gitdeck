@@ -56,8 +56,8 @@ return (
           <TheIcon Icon={GrHome} size={"34"} color={"green"} />
         </div>
       </Link>
-
-      <Link href="/test">Test</Link>
+      
+        <Link href="/test">Test</Link>
       </div>
 
       <div className="w-fit p-1  flex-center">

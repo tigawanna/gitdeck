@@ -27,7 +27,7 @@ token:string
 export const Repository: React.FC<RepositoryProps> = ({username,token}) => {
 const [keyword, setKeyword] = useState({word:''})
 
-console.log("username  ==== ",username)
+// console.log("repo props ===   ==== ",username,token)
   const query = useInfiniteGQLQuery(
     ["repositories", username as string],
     token,
@@ -71,7 +71,9 @@ return <div className="h-full w-full  flex-center ">Loading....</div>;
 const repos = data?.pages;
 const extras = repos[repos.length - 1].user?.repositories;
 const hasMore = totalRepsLoaded !== extras?.totalCount;
-console.log("repo filter results ==== ",results)
+
+// console.log("repo filter results ==== ",results)
+
 return (
   <div className="min-h-screen w-full  flex flex-col justify-start">
     <div
