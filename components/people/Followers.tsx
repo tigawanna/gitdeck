@@ -19,7 +19,7 @@ export const Followers: React.FC<FollowersProps> = ({token,user}) => {
   FOLLOWERS,
   {
     login: user?.login,
-    first: 2,
+    first: 25,
     after: null,
   },
   {
@@ -44,7 +44,7 @@ if (query.isLoading) {
     const hasMore = extras?.pageInfo?.hasNextPage;
 
   return (
-    <div className="h-full w-full flex-col-center ">
+    <div className="min-h-screen w-full flex-col-center mb-5">
       <div className="h-fit w-full flex-center  flex-wrap">
         {pages?.map((page) => {
           return page?.user?.followers?.edges?.map((item,index) => {

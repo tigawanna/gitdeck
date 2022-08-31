@@ -17,7 +17,7 @@ export const Following: React.FC<FollowingProps> = ({ token, user }) => {
     FOLLOWING,
     {
       login: user?.login,
-      first: 2,
+      first: 25,
       after: null,
     },
     {
@@ -42,7 +42,7 @@ export const Following: React.FC<FollowingProps> = ({ token, user }) => {
   const hasMore = extras?.pageInfo?.hasNextPage;
 
   return (
-    <div className="h-full w-full flex-col-center ">
+    <div className="min-h-screen w-full flex-col-center h-full mb-5">
       <div className="h-fit w-full flex-center  flex-wrap">
         {pages?.map((page) => {
           return page?.user?.following?.edges?.map((item, index) => {

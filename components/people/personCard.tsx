@@ -26,7 +26,7 @@ const followThem = (their_name: string, token: string) => {
 console.log("dev.login",dev.login)
   return (
     <div
-      className="h-32 w-[95%] md:w-[31%] lg:w-[25%] mx-[2px]"
+      className="h-44 w-[95%] md:w-[31%] lg:w-[25%] mx-[2px] md:m-2"
     >
        <Link href={'/profile/'+ dev?.login}>
       <div className="w-full h-full flex flex-col 
@@ -47,8 +47,8 @@ console.log("dev.login",dev.login)
             @{dev?.login}
           </div>
           <div
-            className="text-[12px]  max-h-[50px] font-normal 
-              md:text-[10px] break-word w-[95%] text-ellipsis overflow-hidden">
+            className="text-[12px]  max-h-[100px] font-normal 
+              md:text-[13px] break-word w-[95%] text-ellipsis overflow-hidden">
             {dev?.bio}
           </div>
         </div>
