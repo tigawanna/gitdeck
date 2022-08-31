@@ -71,8 +71,8 @@ return (
         />
       </div>
       <div className="w-full flex items-center justify-evenly flex-wrap">
-      { tabs.map((item)=>{
-          return ( <TabItem value={item} setValue={setCurrTab}/>)
+      { tabs.map((item,index)=>{
+          return ( <TabItem value={item} setValue={setCurrTab} key={index}/>)
       })}
      
     </div>
@@ -106,8 +106,7 @@ interface TabItemProps {
 
 export const TabItem: React.FC<TabItemProps> = ({value,setValue}) => {
 return (
- <div className ='px-2 outline-2 outline-slate-500 dark:outline-slate-200 
- hover:outline-purple-500 hover:outline-4 rounded-4 cursor-pointer
+ <div className ='px-4 rounded-4 cursor-pointer text-lg text-mono bg-slate-200
  
  '>
   {value}

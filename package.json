@@ -18,9 +18,11 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
-    "react-query": "^3.39.2"
+    "react-query": "^3.39.2",
+    "yarn": "^1.22.19"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.4",
     "@types/node": "18.7.13",
     "@types/react": "18.0.17",
     "@types/react-dom": "18.0.6",
