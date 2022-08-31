@@ -37,8 +37,8 @@ console.log("dev.login",dev.login)
           className="h-[80%] w-fit rounded-[50%] m-1 border border-white"
           src={dev?.avatarUrl as string}
           alt=""
-          height={"20px"}
-          width={"20px"}
+          height={"10px"}
+          width={"10px"}
           layout="responsive"
         />
         </div>
