@@ -8,7 +8,7 @@ import Image from "next/image";
 import { Viewer } from './../../utils/types/usertypes';
 import GlobalContext from "../../utils/context/GlobalsContext";
 import relativeTime from 'dayjs/plugin/relativeTime'
-import Link from 'next/link'
+
 
 import { TheIcon } from './../Shared/TheIcon';
 dayjs.extend(relativeTime)
@@ -26,10 +26,10 @@ export const ProfileInfo: React.FC<ProfileInfoProps> = ({ user, token}) => {
     location:user?.location,twitter:user?.twitterUsername}
 
   const [yes, setYes] = useState<any>(user?.viewerIsFollowing);
-  const [active, setActive] = useState<string>("");
+
   const username = user?.login as string;
   const admin = user?.isViewer
-  //console.log("og user",admin)
+
   const followThem = (their_name: string, token: string) => {
     setYes(true);
     // followUser(their_name, token);

@@ -10,7 +10,7 @@ interface LoginProps {}
  const Login: React.FC<LoginProps> = () => {
   const [input, setInput] = useState({ token: "" });
   const [error, setError] = useState({ name: "", message: "" });
-  const router = useRouter();
+
 
   const globalCtx = useContext(GlobalContext);
 
@@ -18,7 +18,7 @@ interface LoginProps {}
   if(globalCtx?.value?.error){
     setError({name:"token",message:globalCtx?.value?.error})
   }
-  }, [])
+  },[globalCtx?.value?.error])
   
 
   // console.log("token context  in login ==== ", token);
