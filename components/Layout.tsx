@@ -136,7 +136,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, local }) => {
   // console.log("search results ====== ",search_query.data)
   return (
     <div className="w-full min-h-screen h-full flex flex-col justify-between dark-styles 
-    scroll-bar prose
+    scroll-bar
     ">
       <ViewerContext.Provider
         value={{ value: { viewer, token }, updateValue: setValue }}
