@@ -86,23 +86,8 @@ export const ProfileInfo: React.FC<ProfileInfoProps> = ({ user, token}) => {
           </div>
         </div>
 
-        <div className="w-[70%] flex justify-between">
-          <Link href={'/profile/'+ user?.login}>
-          <div
-            onClick={() => {
-              setActive("followers");
-            }}
-            className="text-[12px] md:text-lg w-fit h-fit hover:bg-slate-500 rounded.sm 
-            hover:text-white cursor-pointer p-[2px]   dark:hover:bg-slate-900"
-            style={{
-              borderBottomColor: "purple",
-              borderStyle: active === "followers" ? "solid" : "none",
-              borderBottomWidth: "5px",
-            }}
-          >
-            folllowers: {user?.followers?.totalCount}
-          </div>
-          </Link>
+        <div className="w-[95%] flex">
+
 
           {!admin ? (
             <div>
@@ -110,7 +95,7 @@ export const ProfileInfo: React.FC<ProfileInfoProps> = ({ user, token}) => {
                 <button
                   onClick={() => unfollowThem(username, token)}
                   className="bg-slate-600 hover:bg-slate-800 text-white hover:text-red-200 
-                  text-[12px] rounded-md p-[4px] m-[3px] h-fit"
+                  text-[12px] rounded-md p-[4px] m-[3px] h-fit w-full "
                 >
                   {"Unfollow"}
                 </button>
@@ -126,20 +111,7 @@ export const ProfileInfo: React.FC<ProfileInfoProps> = ({ user, token}) => {
             </div>
           ) : null}
           
-          <Link href={'/profile/'+ user?.login}>
-          <div
-            onClick={() => {setActive("following") }}
-            className="text-[12px] md:text-lg w-fit h-fit rounded-sm 
-          hover:bg-slate-500 hover:text-white cursor-pointer p-[2px] dark:hover:bg-slate-900"
-            style={{
-              borderBottomColor: "purple",
-              borderStyle: active === "following" ? "solid" : "none",
-              borderBottomWidth: "5px",
-            }}
-          >
-            folllowing: {user?.following?.totalCount}
-          </div>
-          </Link>
+
 
         </div>
       </div>

@@ -1,19 +1,21 @@
 export interface Viewer {
-  name:string;
-  login: string;
-  email: string;
-  bio: string;
-  avatarUrl: string;
-  company: any;
-  twitterUsername: any;
-  createdAt: string;
-  isFollowingViewer: boolean;
-  viewerIsFollowing: boolean;
-  isViewer: boolean;
-  location: string;
-  url: string;
-  followers: Followers;
-  following: Following;
+  id: string
+  name: string
+  login: string
+  email: string
+  bio: string
+  avatarUrl: string
+  company: any
+  twitterUsername: any
+  createdAt: string
+  isFollowingViewer: boolean
+  viewerIsFollowing: boolean
+  isViewer: boolean
+  location: string
+  url: string
+  followers: Followers
+  following: Following
+  repositories: Repositories
 }
 
 
@@ -38,15 +40,20 @@ export interface OneUser {
 
 export interface Followers {
   totalCount: number;
-  nodes: FollowNode[];
+  nodes: CountNode[];
 }
 
 
 export interface Following {
   totalCount: number;
-  nodes: FollowNode[];
+  nodes: CountNode[];
 }
 
-export interface FollowNode {
+export interface Repositories {
+  totalCount: number
+  nodes: CountNode[]
+}
+
+export interface CountNode {
   id: string;
 }

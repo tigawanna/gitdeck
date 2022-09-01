@@ -29,6 +29,13 @@ export const OneUserFrag = gql`
         id
       }
     }
+    
+  repositories(first:1){
+   totalCount
+    nodes{
+      id
+    }
+    }
   }
 `;
 

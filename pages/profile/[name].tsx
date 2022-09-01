@@ -11,6 +11,7 @@ import { Loading } from './../../components/Shared/Loading';
 import { Followers  } from '../../components/people/Followers';
 import { Following  } from '../../components/people/Following';
 import { Repository } from './../../components/repo/Repository';
+import { TabItem } from '../../components/Shared/TabItem';
 
 interface ProfileProps {
 
@@ -27,7 +28,7 @@ const router = useRouter();
 const viewerCtx = useContext(ViewerContext);
 const { name } = router.query
 const [currTab,setCurrTab] = useState<string>("repo")
-const tabs =['repo','followers','following']
+
 
   const query = useGQLQuery(
     ["one-user",name as string],
@@ -65,8 +66,13 @@ const tabs =['repo','followers','following']
   }
 
 const response = query.data?.user as Viewer
- console.log("user name === ",name , response?.login)
+// console.log(response)
+//  console.log("user name === ",name , response?.login)
+const followingcount = response.following.totalCount
+const followercount = response.followers.totalCount
+const repocount = response.repositories.totalCount
 
+const tabs =[['repo',repocount],['followers',followercount],['following',followingcount]]
 
 return (
     <div className="min-h-screen h-full flex flex-col justify-start">
@@ -76,12 +82,16 @@ return (
           user={response}
         />
       </div>
-      <div className="w-full flex items-center justify-evenly flex-wrap sticky top-6 z-40">
+
+      <div className="w-full flex items-center justify-evenly flex-wrap sticky top-[80px] z-40">
       { tabs.map((item,index)=>{
-          return ( <TabItem value={item} currTab={currTab} setValue={setCurrTab} key={index}/>)
+      return ( 
+        <TabItem value={item[0] as string} count={item[1] as number} 
+               currTab={currTab} setValue={setCurrTab} key={index}/>
+        )
       })}
-     
-    </div>
+     </div>
+
       <div className="min-h-[80%] flex flex-col ">
        
        {currTab ==='repo'?<Repository
@@ -99,6 +109,7 @@ return (
         />:null}
 
       </div>
+
     </div>
   );
 }
@@ -106,27 +117,6 @@ return (
 export default Profile
 
 
-interface TabItemProps {
-  value: string;
-  currTab:string
-  setValue: React.Dispatch<React.SetStateAction<string>>;
-}
 
-export const TabItem: React.FC<TabItemProps> = ({value,setValue,currTab}) => {
- 
-return (
-
-<div 
-style={{color: value === currTab?'#ba0aff':'',
-borderBottomColor: value === currTab?'#ba0aff':'',
-borderBottomWidth:'1px'
-}}
-  onClick={() =>setValue(value)}
- className ='py-1  cursor-pointer md:ext-2xl font-bold text-mono w-[95%] 
- flex-center md:flex-1 m-[1px] '>
-  {value}
- </div>
-);
-}
  
 
