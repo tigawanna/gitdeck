@@ -18,7 +18,7 @@ interface LoginProps {}
   if(globalCtx?.value?.error){
     setError({name:"token",message:globalCtx?.value?.error})
   }
-  }, [])
+  }, [globalCtx?.value?.error])
   
 
   // console.log("token context  in login ==== ", token);
