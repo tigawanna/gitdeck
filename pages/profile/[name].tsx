@@ -81,7 +81,8 @@ return (
     </div>
 
     <div className="min-h-[80%] flex flex-col justify-start">
-      <div className="w-full flex items-center justify-evenly flex-wrap sticky top-[90px] z-40">
+      <div className="w-full flex items-center justify-evenly flex-wrap sticky 
+      top-[100px] z-50 dark:bg-slate-700 bg-white ">
         {tabs.map((item, index) => {
           return (
             <TabItem

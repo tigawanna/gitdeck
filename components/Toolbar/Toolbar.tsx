@@ -44,7 +44,7 @@ globalCtx.updateValue({ type: "THEME", payload: nextTheme });
 // }
 //console.log('user results === ',results)
 return (
-  <div className="w-[100%] bg-slate-200 dark:bg-slate-700 h-[60px] max-h-[50px] flex-center">
+  <div className="w-[100%] bg-slate-200 dark:bg-slate-700 h-[60px] max-h-[50px] flex-center ">
     {open ? (
       <Consent setOpen={setOpen} message={"Sign Out?"} action={logout} />
     ) : null}

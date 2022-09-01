@@ -47,7 +47,7 @@ interface LoginProps {}
   return (
     <div
       className=" w-full h-full flex justify-center items-center fixed top-12 bottom-0 
-   z-50 bg-slate-200 dark:bg-slate-800"
+   z-50 bg-slate-200 dark:bg-slate-800 "
     >
       <IconContext.Provider
         value={{ size: "25px", className: "table-edit-icons" }}
@@ -57,13 +57,13 @@ interface LoginProps {}
          shadow-purple-500 "
         >
           <div className="flex-col-center">
-            <label className="text-lg font-bold text-black dark:text-white">
+            <label className="text-lg font-bold text-black dark:text-white ">
               Join
             </label>
             <input
               style={{ borderColor: isError() ? "red" : "" }}
               className="w-[80%] md:w-[80%] p-2 m-1 border-black
-             text-black dark:text-white border rounded-sm dark:bg-black"
+             text-black dark:text-white border rounded-sm dark:bg-black "
               id="token"
               placeholder="personal access token"
               onChange={handleChange}

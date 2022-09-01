@@ -11,6 +11,7 @@ import { SearchBox } from "./Shared/SearchBox";
 import { SearchResult } from "./../utils/types/searchtype";
 import ViewerContext from "../utils/context/ViewerContext";
 import { Loading } from "./Shared/Loading";
+import { ResultsList } from './Shared/ResultsList';
 
 interface Local {
   loading: boolean;
@@ -36,7 +37,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, local }) => {
   const [validating, setValidating] = useState(true);
   const token = globalCtx?.value?.token as string;
   const [keyword, setKeyword] = useState({ word: "" });
-  // console.log("layout context  top value ===== ", token);
+
 
   const query = useGQLQuery(
     ["main-user", token],
@@ -46,13 +47,10 @@ export const Layout: React.FC<LayoutProps> = ({ children, local }) => {
     {
       enabled: token ? true : false,
       onSuccess: (data: any) => {
-        // console.log("main user query success ", data);
-        // console.log("main user query success ", globalCtx);
-        // globalCtx.updateValue({type: "MAIN-USER",payload: data});
-        setValidating(false);
+       setValidating(false);
       },
       onError: (error: any) => {
-        //  console.log("main user query error ", error);
+
         if (
           error?.response?.status === 401 ||
           error?.response?.status === 402
@@ -81,18 +79,16 @@ export const Layout: React.FC<LayoutProps> = ({ children, local }) => {
     {
       enabled: keyword?.word?.length > 3 && token ? true : false,
       onSuccess: (data: any) => {
-        // console.log("search query success ", data);
+
         setValidating(false);
       },
       onError: (error: any) => {
-        // console.log("search query error ", error);
+
         setValidating(false);
       },
     }
   );
 
-  // console.log("query.data     ===== ",query.data)
-  // console.log("layout query ==== ",query)
 
   //@ts-ignore
   const error = query?.error?.response as RqResponse;
@@ -108,11 +104,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, local }) => {
 
   const shouldLogin = () => {
     if ((query.isError && !validating) || !token) {
-      //  console.log("should login token ==== ",token)
-      //  console.log("should login local ==== ",local)
-      //  console.log("should login query ==== ",query)
-      //  console.log("should login validting ==== ",validating)
-      return true;
+        return true;
     }
     return false;
   };
@@ -131,13 +123,10 @@ export const Layout: React.FC<LayoutProps> = ({ children, local }) => {
 
   const viewer = query?.data?.viewer as Viewer;
 
-  // console.log("viewre ==== ",viewer)
-  // console.log("search results ====== ",search_query.data)
   return (
     <div className="w-full min-h-screen h-full flex flex-col justify-between dark-styles ">
       <ViewerContext.Provider
-        value={{ value: { viewer, token }, updateValue: setValue }}
-      >
+        value={{ value: { viewer, token }, updateValue: setValue }}>
         <div className="fixed top-0 w-full z-30 h-[10%]">
           <Toolbar user={viewer} />
           <div className="w-full dark-styles ">
@@ -150,7 +139,14 @@ export const Layout: React.FC<LayoutProps> = ({ children, local }) => {
               search_query={search_query}
             />
           </div>
-        </div>
+    </div>
+
+    <div className="w-full  fixed top-[95px] flex justify-end z-50">
+        {search_results?.edges && keyword.word !== ""?
+        <ResultsList results={search_results?.edges} setKeyword={setKeyword} />
+        :null}
+    </div>
+
         <div className=" h-[90%]  mt-24">{children}</div>
       </ViewerContext.Provider>
     </div>

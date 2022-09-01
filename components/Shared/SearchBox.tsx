@@ -42,7 +42,7 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
         <div className="flex-center w-[80%] md:w-[50%] border-black border rounded-md ">
           <input
             className="w-[100%]  p-[5px] md:p-1 mx-1 dark:bg-slate-700  
-            mr-2 transition duration-500"
+            mr-2 "
             id="word"
             placeholder={title}
             onChange={handleChange}
@@ -77,7 +77,7 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
         <div
           style={{ position: "fixed", top: "100px" }}
           className=" w-[70%]  flex-center h-[10%] fixed
-          top-[15%] bg-slate-200 dark:bg-slate-900 text-lg rounded transition duration-500"
+          top-[15%] bg-slate-200 dark:bg-slate-900 text-lg rounded "
         >
           searching....
         </div>
@@ -94,7 +94,7 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
           style={{ position: "fixed", top: "100px" }}
           className=" w-[90%] md:w-[50%]   flex-center h-[10%] 
           fixed top-[15%] bg-slate-200 dark:bg-slate-900 text-lg 
-          rounded transition duration-500 " 
+          rounded " 
         >
           no matches, try different key words
         </div>
@@ -103,7 +103,8 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
         <div
           style={{ position: "fixed", top: "100px" }}
           className=" w-[95%]  flex items-center justify-center 
-          md:justify-end h-[70%] fixed top-[15%] dark:text-white dark:border-white dark:shaow-white"
+          md:justify-end h-[70%] fixed top-[15%] dark:text-white
+           dark:border-white dark:shaow-white "
         >
           <ResultsList results={results} setKeyword={setKeyword} />
         </div>

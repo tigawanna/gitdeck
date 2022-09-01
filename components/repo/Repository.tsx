@@ -82,7 +82,7 @@ const hasMore = totalRepsLoaded !== extras?.totalCount;
 return (
   <div className="min-h-screen w-full  flex flex-col justify-start">
     <div
-      className="h-[10%] p-1 w-full flex-center my-5 sticky top-[50px] z-50
+      className="h-[10%] p-1 w-full flex-center my-5 sticky top-[50px] z-40
      bg-white dark:bg-slate-800 "
     >
       <SearchBox
@@ -96,7 +96,7 @@ return (
     </div>
     <div className="w-full flex  sticky top-[70px] z-50 ">
       <div className="w-[10%] flex-center p-[2px] font-bold bg-white 
-      dark:bg-slate-700 transition duration-500 rounded-sm">
+      dark:bg-slate-700  rounded-sm">
         {totalRepsLoaded}/{extras.totalCount}
       </div>
     </div>

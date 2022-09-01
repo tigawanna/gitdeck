@@ -3,8 +3,6 @@ import { useContext , useState } from "react";
 import { ProfileInfo } from "../components/people/ProfileInfo";
 import ViewerContext from "./../utils/context/ViewerContext";
 import { Repository } from "../components/repo/Repository";
-import { FaSearch , FaTimes} from "react-icons/fa";
-import { TheIcon } from '../components/Shared/TheIcon'
 
 import { TabItem } from './../components/Shared/TabItem';
 import { Following } from './../components/people/Following';
@@ -31,7 +29,8 @@ const tabs =[['repo',repocount],['followers',followercount],['following',followi
       </div>
 
       <div className="min-h-[80%] flex flex-col justify-start">
-        <div className="w-full flex items-center justify-evenly flex-wrap sticky top-[90px] z-40">
+        <div className="w-full flex items-center justify-evenly 
+        flex-wrap sticky z-50 top-[100px] dark:bg-slate-700 bg-white">
           {tabs.map((item, index) => {
             return (
               <TabItem
