@@ -22,7 +22,7 @@ const repocount = response?.repositories?.totalCount
 
 const tabs =[['repo',repocount],['followers',followercount],['following',followingcount]]
   return (
-    <div className="min-h-screen h-full flex flex-col justify-between">
+    <div className="min-h-screen h-full flex flex-col justify-start">
       <div className="h-[20%]">
         <ProfileInfo
           token={viewerCtx?.value?.token as string}
@@ -30,35 +30,42 @@ const tabs =[['repo',repocount],['followers',followercount],['following',followi
         />
       </div>
 
-   <div className="min-h-[80%] flex flex-col ">
-   
-      <div className="w-full flex items-center justify-evenly flex-wrap sticky top-[80px] z-40">
-      { tabs.map((item,index)=>{
-      return ( 
-      <TabItem value={item[0] as string} count={item[1] as number} 
-      currTab={currTab} setValue={setCurrTab} key={index}/>)
-      })}
-     
-    </div>
-     
-       
-       {currTab ==='repo'?<Repository
-          token={viewerCtx?.value?.token as string}
-          username={response?.login as string}
-        />:null }
-        
-       {currTab==='followers'?<Followers
-          token={viewerCtx?.value?.token as string}
-          user={response}
-        />:null}
-       {currTab==='following'?<Following
-          token={viewerCtx?.value?.token as string}
-          user={response}
-        />:null}
+      <div className="min-h-[80%] flex flex-col justify-start">
+        <div className="w-full flex items-center justify-evenly flex-wrap sticky top-[90px] z-40">
+          {tabs.map((item, index) => {
+            return (
+              <TabItem
+                value={item[0] as string}
+                count={item[1] as number}
+                currTab={currTab}
+                setValue={setCurrTab}
+                key={index}
+              />
+            );
+          })}
+        </div>
 
+        {currTab === "repo" ? (
+          <Repository
+            token={viewerCtx?.value?.token as string}
+            username={response?.login as string}
+          />
+        ) : null}
+
+        {currTab === "followers" ? (
+          <Followers
+            token={viewerCtx?.value?.token as string}
+            user={response}
+          />
+        ) : null}
+        {currTab === "following" ? (
+          <Following
+            token={viewerCtx?.value?.token as string}
+            user={response}
+          />
+        ) : null}
       </div>
-      </div>
-    
+    </div>
   );
 };
 

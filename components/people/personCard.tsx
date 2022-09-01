@@ -23,7 +23,7 @@ const followThem = (their_name: string, token: string) => {
     setYes(false);
     // unfollowUser(their_name, token);
   };
-console.log("dev.login",dev.login)
+// console.log("dev.login",dev.login)
   return (
     <div
       className="h-44 w-[95%] md:w-[31%] lg:w-[25%] mx-[2px] md:m-2"

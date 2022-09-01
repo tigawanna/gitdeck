@@ -130,13 +130,13 @@ export const ProfileInfoItemWrapper: React.FC<ProfileInfoItemWrapperProps> = ({
   valkey,
   value
 }) => {
-  console.log("kyett",valkey,value)
+  // console.log("kyett",valkey,value)
   if (!value) {
     return null;
   }
   
   const WhatIcon = () => {
-    console.log("kye",valkey,value)
+    // console.log("kye",valkey,value)
     switch (valkey) {
 
       case "company":
