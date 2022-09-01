@@ -1,7 +1,7 @@
 import React from 'react'
 import { SearchEdge, SearchNode } from './../../utils/types/searchtype';
 import Image from "next/image";
-import Link from 'next/link'
+
 
 interface ResultsListProps {
   results:SearchEdge[];
@@ -36,13 +36,16 @@ interface ResultsCardProps {
 export const ResultsCard: React.FC<ResultsCardProps> = ({result,setKeyword}) => {
 
 
- 
+ const navigateToProfile = () => {
+   setKeyword({word:""}) 
+  //  navigate(`/personprofile`, { state: { dev:result } });
+ };    
 return (
-<Link href={'/profile/'+ result?.login} >
   <div
-  onClick={()=>setKeyword({word:""})}
- className="w-[100%] h-26 m-[2px] p-1 bg-slate-100 dark:bg-slate-800  rounded-lg shadow-slate-600 
- dark:shadow-white hover:bg-slate-200 dark:hover:bg-slate-900 shadow-sm cursor-pointer inline-flex" 
+    onClick={()=>navigateToProfile()}
+    className="w-[100%] h-26 m-[2px] p-1 bg-slate-100 dark:bg-slate-800  rounded-lg 
+    shadow-slate-600 dark:shadow-white
+  hover:bg-slate-200 dark:hover:bg-slate-900 shadow-sm cursor-pointer inline-flex" 
   >
         <Image
           className="h-[50px] w-[50px] rounded-[50%] m-1"
@@ -53,9 +56,8 @@ return (
         
         />
     <div className="w-[100%] h-12  flex-center text-base font-mono font-normal">
-      {result?.login}
+      {result.login}
     </div>
   </div>
-  </Link>
 );
 }

@@ -39,7 +39,7 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
   return (
     <div className="w-full  h-fit p-[2px] flex flex-col items-center justify-center md:justify-end ">
       <form onSubmit={handleSubmit} className="w-full flex items-center  justify-center md:justify-end">
-        <div className="flex-center w-[80%] md:w-[50%]  rounded-md ">
+        <div className="flex-center w-[80%] md:w-[50%] border-black border rounded-md ">
           <input
             className="w-[100%]  p-[5px] md:p-1 mx-1 dark:bg-slate-700  
             mr-2 transition duration-500"
@@ -99,15 +99,15 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
           no matches, try different key words
         </div>
       ) : null}
-      {/* {results && keyword.word !== "" && title !== "filter repo" ? (
+      {results && keyword.word !== "" && title !== "filter repo" ? (
         <div
-          style={{ position: "fixed", top: "100px"}}
-          className=" w-[95%]  flex items-center justify-center z-50 
-          md:justify-end h-[70%]  dark:text-white dark:border-white dark:shaow-white"
+          style={{ position: "fixed", top: "100px" }}
+          className=" w-[95%]  flex items-center justify-center 
+          md:justify-end h-[70%] fixed top-[15%] dark:text-white dark:border-white dark:shaow-white"
         >
           <ResultsList results={results} setKeyword={setKeyword} />
         </div>
-      ) : null} */}
+      ) : null}
     </div>
   );
 };

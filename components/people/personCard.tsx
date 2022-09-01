@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { OneUser } from "./utils/types";
 import Link from 'next/link'
+
 import Image from "next/image";
 
 interface PersonCardProps {
