@@ -16,6 +16,7 @@ import { REPOS } from './utils/query';
 import { REPONODE, REPOPAGE, ROOTREPO } from './utils/type';
 import { concatPages } from './utils/helper';
 import { useInfiniteGQLQuery } from './../../utils/queryhooks/gqlinfinitequery';
+import { Loading } from './../Shared/Loading';
 
 
 dayjs.extend(relativeTime)
@@ -65,7 +66,11 @@ const totalRepsLoaded = data?.pages[0]?.user?.repositories?.edges?.length
 // console.log("in pepos === ", query.data);
 
 if (query.isLoading ) {
-return <div className="h-full w-full  flex-center ">Loading....</div>;
+return (
+<div className="h-full w-full  flex-center ">
+ <Loading size={20} />
+  </div>
+  );
 }  
 // const {repos,query} = useRepos(token,username as string,keyword.word)
 const repos = data?.pages;
@@ -115,7 +120,9 @@ return (
       </button>
     ) : null}
     {query.isFetchingNextPage ? (
-      <div className="w-full flex-center m-1 p-1">loading more...</div>
+      <div className="w-full flex-center ">
+        <Loading size={20} />
+      </div>
     ) : null}
   </div>
 );

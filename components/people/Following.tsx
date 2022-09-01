@@ -4,6 +4,7 @@ import { FOLLOWING } from "./utils/queries";
 import { FOLLOWINGPAGE, ROOTFOLLOWING } from "./utils/types";
 import { useInfiniteGQLQuery } from "./../../utils/queryhooks/gqlinfinitequery";
 import { OneUser } from "../../utils/types/usertypes";
+import { Loading } from './../Shared/Loading';
 
 interface FollowingProps {
   token: string;
@@ -33,11 +34,16 @@ export const Following: React.FC<FollowingProps> = ({ token, user }) => {
   const data = query.data as ROOTFOLLOWING;
 
   if (query.isLoading) {
-    return <div className="h-full w-full  flex-center ">Loading....</div>;
+    return (
+      <div className="w-full flex-center">
+      <Loading size={20} />
+      </div>
+    )
+    ;
   }
 
   const pages = data?.pages;
-  console.log("followers === ", data);
+  // console.log("followers === ", data);
   const extras = pages[pages.length - 1].user?.following;
   const hasMore = extras?.pageInfo?.hasNextPage;
 
@@ -67,7 +73,11 @@ export const Following: React.FC<FollowingProps> = ({ token, user }) => {
         </button>
       ) : null}
       {query.isFetchingNextPage ? (
-        <div className="w-full flex-center m-1 p-1">loading more...</div>
+        
+      <div className="w-full flex-center">
+        <Loading size={20} />
+      </div>
+
       ) : null}
     </div>
   );

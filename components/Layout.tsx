@@ -118,7 +118,11 @@ export const Layout: React.FC<LayoutProps> = ({ children, local }) => {
   };
 
   if (query.isLoading || local.loading) {
-    return ( <Loading size={100}/>);
+    return ( 
+      <div className='w-full min-h-screen flex-center'>
+    <Loading size={100}/>
+    </div>
+    );
   }
 
   if (shouldLogin()) {

@@ -57,7 +57,11 @@ const tabs =['repo','followers','following']
   }
 
   if (query.isLoading) {
-    return ( <Loading size={100}/>);
+    return ( 
+    <div className='w-full min-h-screen flex-center'>
+    <Loading size={100}/>
+    </div>
+    );
   }
 
 const response = query.data?.user as Viewer
