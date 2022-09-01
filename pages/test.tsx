@@ -13,7 +13,7 @@ interface testProps {
 const Test: React.FC<testProps> = ({}) => {
 const viewerCtx = useContext(ViewerContext);
   const query = useGQLQuery(
-    ["one-user"],
+    ["test repo"],
   viewerCtx?.value?.token as string,
     GETONEUSER,
     {

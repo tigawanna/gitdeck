@@ -130,7 +130,9 @@ export const REPOS = gql`
                          name
                        }
                      }
+                     totalCount
                    }
+
                  }
                  cursor
                }

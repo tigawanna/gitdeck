@@ -8,6 +8,7 @@ import { Viewer } from "./../utils/types/usertypes";
 import GlobalContext from "../utils/context/GlobalsContext";
 import { useState } from "react";
 import { SearchBox } from "./Shared/SearchBox";
+import { ResultsList } from "./Shared/ResultsList";
 import { SearchResult } from "./../utils/types/searchtype";
 import ViewerContext from "../utils/context/ViewerContext";
 import { Loading } from "./Shared/Loading";
@@ -138,9 +139,9 @@ export const Layout: React.FC<LayoutProps> = ({ children, local }) => {
       <ViewerContext.Provider
         value={{ value: { viewer, token }, updateValue: setValue }}
       >
-        <div className="fixed top-0 w-full z-30 h-[10%]">
+        <div className="fixed top-0 w-full z-30 h-[10%] ">
           <Toolbar user={viewer} />
-          <div className="w-full dark-styles ">
+          <div className="w-full dark-styles">
             <SearchBox
               keyword={keyword}
               setKeyword={setKeyword}
@@ -151,6 +152,13 @@ export const Layout: React.FC<LayoutProps> = ({ children, local }) => {
             />
           </div>
         </div>
+
+      {search_results?.edges && keyword.word !== "" ? 
+    <div className="fixed top-[100px] w-full z-50 max-h-[60%] flex item-center justify-end 
+    overflow-y-scroll scroll-bar">
+      <ResultsList results={search_results?.edges} setKeyword={setKeyword} />
+    </div>:null }
+
         <div className=" h-[90%]  mt-24">{children}</div>
       </ViewerContext.Provider>
     </div>
