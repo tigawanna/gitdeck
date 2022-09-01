@@ -11,7 +11,6 @@ import { SiVisualstudiocode, SiGithub } from "react-icons/si";
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { SearchBox } from '../Shared/SearchBox';
 import { TheIcon } from '../Shared/TheIcon';
-
 import { REPOS } from './utils/query';
 import { REPONODE, REPOPAGE, ROOTREPO } from './utils/type';
 import { concatPages } from './utils/helper';
@@ -94,8 +93,8 @@ return (
         search_query={query}
       />
     </div>
-    <div className="w-full flex  sticky top-[70px] z-50 ">
-      <div className="w-[10%] flex-center p-[2px] font-bold bg-white 
+    <div className="w-full flex  sticky top-[100px] md:top-[70px] z-50 ">
+      <div className="w-[30%] md:w-[10%] flex-center p-[2px] font-bold bg-white 
       dark:bg-slate-700  rounded-sm">
         {totalRepsLoaded}/{extras.totalCount}
       </div>

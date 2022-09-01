@@ -5,7 +5,6 @@ import { useGQLQuery } from './../../utils/queryhooks/gqlquery';
 import { GETONEUSER } from '../../utils/queries/GQLuserqueries';
 import ViewerContext from './../../utils/context/ViewerContext';
 import { ProfileInfo } from './../../components/people/ProfileInfo';
-
 import { Viewer} from './../../utils/types/usertypes';
 import { Loading } from './../../components/Shared/Loading';
 import { Followers  } from '../../components/people/Followers';
