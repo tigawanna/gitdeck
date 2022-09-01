@@ -19,7 +19,7 @@ interface ProfileInfoProps {
 }
 
 export const ProfileInfo: React.FC<ProfileInfoProps> = ({ user, token}) => {
-  console.log("profile info props ===   ==== ",user,token)
+  // console.log("profile info props ===   ==== ",user,token)
 
   const globalCtx = useContext(GlobalContext)
    const extradetails = {company:user?.company,email:user?.email,

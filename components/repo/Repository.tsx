@@ -80,7 +80,7 @@ const hasMore = totalRepsLoaded !== extras?.totalCount;
 // console.log("repo filter results ==== ",results)
 
 return (
-  <div className="min-h-screen w-full  flex flex-col justify-start">
+  <div className="min-h-screen w-full  flex flex-col justify-start scroll-bar">
     <div
       className="h-[10%] p-1 w-full flex-center my-5 sticky top-[50px] z-40
      bg-white dark:bg-slate-800 "

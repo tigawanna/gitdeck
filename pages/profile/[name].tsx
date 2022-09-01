@@ -75,13 +75,14 @@ const repocount = response.repositories.totalCount
 const tabs =[['repo',repocount],['followers',followercount],['following',followingcount]]
 
 return (
-  <div className="min-h-screen h-full flex flex-col justify-start">
+  <div className="min-h-screen h-full flex flex-col justify-start scroll-bar">
     <div className="h-[20%]">
       <ProfileInfo token={viewerCtx?.value?.token as string} user={response} />
     </div>
 
     <div className="min-h-[80%] flex flex-col justify-start">
-      <div className="w-full flex items-center justify-evenly flex-wrap sticky top-[90px] z-40">
+      <div className="w-full flex items-center justify-evenly flex-wrap sticky top-[90px] z-40 
+      bg-opacity-[70%] bg-slate-400">
         {tabs.map((item, index) => {
           return (
             <TabItem

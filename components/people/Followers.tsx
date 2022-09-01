@@ -50,7 +50,7 @@ if (query.isLoading) {
     const hasMore = extras?.pageInfo?.hasNextPage;
 
   return (
-    <div className="min-h-screen w-full flex-col justify-start mb-5">
+    <div className="min-h-screen w-full flex-col justify-start mb-5 scroll-bar">
       <div className="h-fit w-full flex-center  flex-wrap">
         {pages?.map((page) => {
           return page?.user?.followers?.edges?.map((item,index) => {
