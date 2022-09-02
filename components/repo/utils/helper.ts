@@ -16,8 +16,11 @@ const filtered = totalRepos.filter((item) =>
 );
 // console.log("everything ===== ",totalRepos);
 // console.log("filtered ===== ",filtered)
-const base = repo.pages[0].user
-const user = {login:base.login, repositories:{
+const base = repo.pages[repo.pages.length -1].user;
+const user = {
+    ...base,
+    login:base.login,
+    repositories:{
     edges:filtered, 
     totalCount:base.repositories.totalCount,
     pageInfo:base.repositories.pageInfo
