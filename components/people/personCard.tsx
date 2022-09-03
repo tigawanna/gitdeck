@@ -38,11 +38,12 @@ const followThem = (their_id: string) => {
 // console.log("dev.login",dev.login)
   return (
     <div
-      className="h-44 w-[95%] md:w-[31%] lg:w-[25%] mx-[2px] md:m-2"
+      className="h-44 w-[99%] md:w-[31%] lg:w-[25%] m-2 md:m-2"
     >
 
       <div className="w-full h-full flex flex-col 
-      justify-between  shadow shadow-black hover:shadow-md m-2 p-2">
+      justify-between
+       hover:shadow-md m-1 p-2 border-[1px] border-black dark:border-white rounded-sm">
     <Link href={'/profile/'+ dev?.login}>
       <div className=" flex items-center justify-between min-w-[60%] cursor-pointer w-full">
         <div className="h-full w-16 mx-2">

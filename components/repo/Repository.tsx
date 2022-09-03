@@ -66,8 +66,8 @@ const totalRepsLoaded = data?.pages[0]?.user?.repositories?.edges?.length
 
 if (query.isLoading ) {
 return (
-<div className="h-full w-full  flex-center p-5 m-5">
- <Loading size={40} />
+<div className="h-full w-full  flex-center p-2">
+ <Loading size={30} />
   </div>
   );
 }  
@@ -146,13 +146,10 @@ const vslink = `https://vscode.dev/${repo.url}`;
 return (
   <div
     className=" min-h-fit h-56 m-2 w-[95%] md:w-[40%] lg:w-[30%] p-5 flex-col 
-     ustify-between items-center shadow-sm shadow-slate-300 dark:shadow-black  
- border-black border-2 rounded-md"
-  >
+     justify-between items-center border-black dark:border-white border rounded-md">
     <div
       onClick={() => {}}
-      className=" flex-col items-center  justify-between  cursor-pointer h-[90%] w-full"
-    >
+      className=" flex-col items-center  justify-between  cursor-pointer h-[90%] w-full">
       <div className="text-[20px] font-semibold md:text-xl md:font-bold  break-all ">
         {repo?.name}
       </div>

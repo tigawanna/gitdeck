@@ -35,8 +35,8 @@ export const Following: React.FC<FollowingProps> = ({ token, user }) => {
 
   if (query.isLoading) {
     return (
-      <div className="w-full flex-center p-5 m-5">
-      <Loading size={40} />
+      <div className="min-h-[20%] w-full flex-center p-2">
+      <Loading size={30} />
       </div>
     )
     ;
@@ -48,7 +48,7 @@ export const Following: React.FC<FollowingProps> = ({ token, user }) => {
   const hasMore = extras?.pageInfo?.hasNextPage;
 
   return (
-    <div className="min-h-screen w-full flex flex-col justify-start h-full mb-5">
+    <div className="min-h-screen w-full flex flex-col justify-start h-full mb-5 ">
       <div className="h-fit w-full flex-center  flex-wrap">
         {pages?.map((page) => {
           return page?.user?.following?.edges?.map((item, index) => {
@@ -73,11 +73,9 @@ export const Following: React.FC<FollowingProps> = ({ token, user }) => {
         </button>
       ) : null}
       {query.isFetchingNextPage ? (
-        
-      <div className="w-full flex-center">
-        <Loading size={20} />
-      </div>
-
+        <div className="w-full flex-center">
+          <Loading size={20} />
+        </div>
       ) : null}
     </div>
   );
