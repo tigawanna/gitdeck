@@ -214,7 +214,7 @@ return (
 
       <div className="flex-center">{repo?.diskUsage} kbs</div>
       <div className="flex-center">
-        <a target="_blank" rel="noreferrer" href={repo.url} className="mx-1">
+        <a target="_blank" rel="noreferrer" href={vslink} className="mx-1">
           <TheIcon Icon={SiVisualstudiocode} size={"18"} color={"blue"} />
         </a>
         <a target="_blank" rel="noreferrer" href={repo.url} className="mx-1">
