@@ -11,6 +11,8 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import Link from "next/link";
 
 import { TheIcon } from "./../Shared/TheIcon";
+import { FOLLOWUSER, UNFOLLOWUSER } from './../../utils/mutations/UserMutations';
+import { useGQLmutation } from './../../utils/queryhooks/gqlmutation';
 dayjs.extend(relativeTime);
 
 interface ProfileInfoProps {
@@ -28,19 +30,23 @@ export const ProfileInfo: React.FC<ProfileInfoProps> = ({ user, token }) => {
     location: user?.location,
     twitter: user?.twitterUsername,
   };
+const followMutation = useGQLmutation(token,FOLLOWUSER)
+const unfollowMutation = useGQLmutation(token,UNFOLLOWUSER)
 
   const [yes, setYes] = useState<any>(user?.viewerIsFollowing);
   const [active, setActive] = useState<string>("");
   const username = user?.login as string;
   const admin = user?.isViewer;
   //console.log("og user",admin)
-  const followThem = (their_name: string, token: string) => {
+  const followThem = (their_id: string) => {
     setYes(true);
     // followUser(their_name, token);
+       followMutation.mutate({input:{userId:their_id}})
   };
-  const unfollowThem = (their_name: string, token: string) => {
+  const unfollowThem = (their_id: string) => {
     setYes(false);
     // unfollowUser(their_name, token);
+        unfollowMutation.mutate({input:{userId:their_id}})
   };
 
   // console.log("main user === ",user)
@@ -107,7 +113,7 @@ export const ProfileInfo: React.FC<ProfileInfoProps> = ({ user, token }) => {
             <div>
               {yes ? (
                 <button
-                  onClick={() => unfollowThem(username, token)}
+                  onClick={() => unfollowThem(user?.id as string)}
                   className="bg-slate-600 hover:bg-slate-800 text-white hover:text-red-200 
                   text-[12px] rounded-md p-[4px] m-[3px] h-fit w-full "
                 >
@@ -115,7 +121,7 @@ export const ProfileInfo: React.FC<ProfileInfoProps> = ({ user, token }) => {
                 </button>
               ) : (
                 <button
-                  onClick={() => followThem(username, token)}
+                  onClick={() => followThem(user?.id as string)}
                   className="bg-slate-600 hover:bg-slate-800 text-white hover:text-red-200 
                   text-[12px] rounded-md p-[4px] m-[3px] h-fit "
                 >

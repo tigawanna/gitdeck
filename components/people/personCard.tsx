@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { OneUser } from "./utils/types";
 import Link from 'next/link'
 import Image from "next/image";
+import { useGQLmutation } from './../../utils/queryhooks/gqlmutation';
+import { FOLLOWUSER , UNFOLLOWUSER} from './../../utils/mutations/UserMutations';
 
 interface PersonCardProps {
   dev: OneUser;
@@ -13,23 +15,35 @@ export const PersonCard: React.FC<PersonCardProps> = ({ dev, token}) => {
 
 // console.log("mini user gql query ", miniuser);
 const [yes, setYes] = useState<any>(dev?.viewerIsFollowing);
+const followMutation = useGQLmutation(token,FOLLOWUSER)
+const unfollowMutation = useGQLmutation(token,UNFOLLOWUSER)
 
-const followThem = (their_name: string, token: string) => {
+
+// console.log("follow data ===",followMutation.data)
+// console.log("unfollowdata ===",unfollowMutation.data)
+// console.log("follow user ===",followMutation?.error?.response)
+// console.log("unfollow user ===", unfollowMutation?.error?.response);
+
+
+const followThem = (their_id: string) => {
     setYes(true);
     // followUser(their_name, token);
+    followMutation.mutate({input:{userId:their_id}})
   };
-  const unfollowThem = (their_name: string, token: string) => {
+  const unfollowThem = (their_id: string) => {
     setYes(false);
     // unfollowUser(their_name, token);
+    unfollowMutation.mutate({input:{userId:their_id}})
   };
 // console.log("dev.login",dev.login)
   return (
     <div
       className="h-44 w-[95%] md:w-[31%] lg:w-[25%] mx-[2px] md:m-2"
     >
-       <Link href={'/profile/'+ dev?.login}>
+
       <div className="w-full h-full flex flex-col 
       justify-between  shadow shadow-black hover:shadow-md m-2 p-2">
+    <Link href={'/profile/'+ dev?.login}>
       <div className=" flex items-center justify-between min-w-[60%] cursor-pointer w-full">
         <div className="h-full w-16 mx-2">
          <Image
@@ -52,12 +66,14 @@ const followThem = (their_name: string, token: string) => {
           </div>
         </div>
       </div>
+
+      </Link>
      <div className="w-full  flex-center">
       {!dev?.isViewer?
        <div className="w-full  flex-center">
        {yes ? (
         <button
-          onClick={() => unfollowThem(dev.login, token)}
+          onClick={() => unfollowThem(dev.id)}
           className="bg-slate-600 hover:bg-slate-800 text-white w-[90%]
            hover:text-red-200 text-[13px] rounded-md p-[4px] m-[3px] h-fit"
         >
@@ -65,7 +81,7 @@ const followThem = (their_name: string, token: string) => {
         </button>
       ) : (
         <button
-          onClick={() => followThem(dev.login, token)}
+          onClick={() => followThem(dev.id)}
           className="bg-slate-600 hover:bg-slate-800 text-white
            hover:text-red-200 text-[13px] rounded-md p-[4px] m-[3px] h-fit w-[90%]"
         >
@@ -76,8 +92,9 @@ const followThem = (their_name: string, token: string) => {
       :null
       }
       </div>
+
       </div>
-      </Link>
+
     </div>
   );
 };
