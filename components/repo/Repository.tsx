@@ -66,7 +66,7 @@ const totalRepsLoaded = data?.pages[0]?.user?.repositories?.edges?.length
 
 if (query.isLoading ) {
 return (
-<div className="h-full w-full  flex-center ">
+<div className="h-full w-full  flex-center p-5 m-5">
  <Loading size={40} />
   </div>
   );
