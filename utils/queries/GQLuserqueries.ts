@@ -46,19 +46,7 @@ export const GETVIEWER = gql`
   query getViewer {
     viewer {
       ...OneUser
-      followers(first: 1) {
-        totalCount
-        nodes {
-          id
-        }
-      }
-      following(first: 1) {
-        totalCount
-        nodes {
-          id
-        }
-      }
-    }
+   }
   }
   ${OneUserFrag}
 `;

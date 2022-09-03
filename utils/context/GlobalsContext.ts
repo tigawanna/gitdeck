@@ -19,3 +19,4 @@ const init_data: Type = {
 
 const GlobalContext = React.createContext(init_data);
 export default GlobalContext;
+

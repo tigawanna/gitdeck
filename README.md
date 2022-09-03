@@ -1,3 +1,28 @@
+# GITDECK
+
+You'll need a personal access token to login <br>
+[live preview](https://gitdeck-two.vercel.app/)
+ 
+ You multiple points of entry into the rabbit hole , either cllick on follower/ following tabs and click on a profile which wil then expose you to their repos and followers/following  or just look up a username or email anf follow that one , have fun , make friends and learn something new 
+
+## built with 
+
+- nextjs + typescript + tailwindcss
+- react-query : [react-query-tips and tricks](https://dev.to/tigawanna/react-query-tips-and-tricks-with-github-graphql-and-rest-api-47e0)
+- graphql + graphql-request + graphql-tag
+- dayjs
+- [github graphql api](docs/github-graphql.md)
+- custom hooks :[useLoaclStorage](docs/localStorgeHook.md)
+- react-icons : [custom icon wrapper](docs/custonm-icon-wrapper.md)
+- [tailwindcss custom loading screen](docs/custom-loading.md)
+ 
+
+
+
+
+
+## Nextjs Specifics
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -32,3 +57,5 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+

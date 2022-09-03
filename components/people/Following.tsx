@@ -36,7 +36,7 @@ export const Following: React.FC<FollowingProps> = ({ token, user }) => {
   if (query.isLoading) {
     return (
       <div className="w-full flex-center">
-      <Loading size={20} />
+      <Loading size={40} />
       </div>
     )
     ;

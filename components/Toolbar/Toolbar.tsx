@@ -11,7 +11,7 @@ import ALT from '../../public/alt.png'
 import { useContext } from 'react';
 import GlobalContext from '../../utils/context/GlobalsContext';
 import { useRouter } from 'next/router'
-import { IconContext } from "react-icons";
+
 
 interface ToolbarProps {
   user: Viewer | undefined;
